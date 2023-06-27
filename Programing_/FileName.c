@@ -1,78 +1,85 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 
-typedef struct People
+typedef struct Person
 {
 	char name[14];
+	char league[14];
 	unsigned short int age;
+	unsigned int goal;
 	float height;
 	float weight;
-}Person;
-int AddFriend(Person* p_friend, int count)
+}SoccerPlayer;
+int AddPlayer(Person* p_player, int count)
 {
 	if (count < 5)
 	{
-		p_friend = p_friend + count;
-		printf("\n»õ·Î¿î Ä£±¸ Á¤º¸¸¦ ÀÔ·ÂÇÏ¼¼¿ä\n");
-		printf("1. ÀÌ¸§ : ");
-		scanf("%s", p_friend->name);
-		printf("2. ³ªÀÌ : ");
-		scanf("%hu", &p_friend->age);
-		printf("3. Å° : ");
-		scanf("%f", &p_friend->height);
-		printf("4. ¸ö¹«°Ô : ");
-		scanf("%f", &p_friend->weight);
-		printf("ÀÔ·ÂÀ» ¿Ï·áÇß½À´Ï´Ù.\n\n");
+		p_player = p_player + count;
+		printf("\nìƒˆë¡œìš´ ì„ ìˆ˜ ì •ë³´ë¥¼ ì…ë ¥í•˜ì„¸ìš”\n");
+		printf("1. ë¦¬ê·¸ : ");
+		scanf("%s", p_player->league);
+		printf("2. ì´ë¦„ : ");
+		scanf("%s", p_player->name);
+		printf("3. ë‚˜ì´ : ");
+		scanf("%hu", &p_player->age);
+		printf("4. í‚¤ : ");
+		scanf("%f", &p_player->height);
+		printf("5. ëª¸ë¬´ê²Œ : ");
+		scanf("%f", &p_player->weight);
+		printf("6. ê³¨ íšŸìˆ˜ : ");
+		scanf("%d", &p_player->goal);
+		printf("ì…ë ¥ì„ ì™„ë£Œí–ˆìŠµë‹ˆë‹¤.\n\n");
 		return 1;
 	}
 	else
 	{
-		printf("ÃÖ´ë ÀÎ¿øÀ» ÃÊ°úÇÏ¿© ÀÔ·ÂÀ» ÇÒ ¼ö ¾ø½À´Ï´Ù. \n");
-		printf("ÃÖ´ë %d¸í±îÁö¸¸ °ü¸® °¡´ÉÇÕ´Ï´Ù. \n\n", 5);
+		printf("ìµœëŒ€ ì¸ì›ì„ ì´ˆê³¼í•˜ì—¬ ì…ë ¥ì„ í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤. \n");
+		printf("ìµœëŒ€ %dëª…ê¹Œì§€ë§Œ ê´€ë¦¬ ê°€ëŠ¥í•©ë‹ˆë‹¤. \n\n", 5);
 	}
 	return 0;
 }
-int ShowFriendList(Person* p_friend, int count)
+int ShowPlayerList(Person* p_player, int count)
 {
 	int i;
 	if (count > 0)
 	{
-		printf("\nµî·ÏµÈ Ä£±¸ ¸ñ·Ï\n");
+		printf("\në“±ë¡ëœ ì„ ìˆ˜ ìŠ¤íƒ\n");
 		printf("=================================================\n");
 		for (i = 0; i < count; i++)
 		{
-			printf("%-6s\n %3d\n %6.2f\n %6.2f\n", p_friend->name, p_friend->age, p_friend->height, p_friend->weight);
-			p_friend++;
+			printf("ë¦¬ê·¸ : %s\n ì´ë¦„ : %-6s\n ë‚˜ì´ : %3d\n í‚¤ : %6.2f\n ëª¸ë¬´ê²Œ : %6.2f\n ê³¨ íšŸìˆ˜ : %d\n", p_player->league, p_player->name, p_player->age, p_player->height, p_player->weight, p_player->goal);
+			p_player++;
 		}
 		printf("=================================================\n\n");
 	}
 	else
 	{
-		printf("\nµî·ÏµÈ Ä£±¸°¡ ¾ø½À´Ï´Ù.\n\n");
+		printf("\në“±ë¡ëœ ì„ ìˆ˜ê°€ ì—†ìŠµë‹ˆë‹¤.\n\n");
 	}
+	return 1;
 }
 
 int main()
 {
-	Person friends[5];
+	Person player[5];
 	int count = 0, num;
 
 	while (1)
 	{
-		printf("	[¸Ş´º]		\n");
-		printf("1. Ä£±¸Ãß°¡			\n");
-		printf("2. Ä£±¸ ¸ñ·Ï º¸±â \n");
-		printf("3. Á¾·á				\n");
-		printf("=====================\n");
-		printf("¹øÈ£ ¼±ÅÃ : ");
+		printf("	[ë©”ë‰´]		\n");
+		printf("1. ì„ ìˆ˜ì¶”ê°€			\n");
+		printf("2. ì„ ìˆ˜ ìŠ¤íƒ ë³´ê¸° \n");
+		printf("3. ì¢…ë£Œ				\n");
+		printf("=================================================\n");
+		printf("ë²ˆí˜¸ ì„ íƒ : ");
 		scanf("%d", &num);
 		if (num == 1)
 		{
-			if (1 == AddFriend(friends, count))count++;
+			if (1 == AddPlayer(player, count))count++;
 		}
 		else if (num == 2)
 		{
-			ShowFriendList(friends, count);
+			ShowPlayerList(player, count);
 		}
 		else if (num == 3)
 		{
@@ -80,7 +87,7 @@ int main()
 		}
 		else
 		{
-			printf("1~3 ¹øÈ£¸¸ ¼±ÅÃÇÒ ¼ö ÀÖ½À´Ï´Ù!!\n\n");
+			printf("1~3 ë²ˆí˜¸ë§Œ ì„ íƒí•  ìˆ˜ ìˆìŠµë‹ˆë‹¤\n\n");
 		}
 	}
 }
